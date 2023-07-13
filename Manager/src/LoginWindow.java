@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class LoginWindow extends JFrame
@@ -27,11 +29,21 @@ public class LoginWindow extends JFrame
         Login.setBackground(Color.GREEN);
         Window.add(Login);
 
+        //action Listener for login
+        Login.addActionListener(e -> {
+            System.out.println("Login");
+        });
+
         //Sign up button
         JButton Sign_up = new JButton("Sign Up");
         Sign_up.setBounds(Width/2,Height/4, 150,75);
         Sign_up.setBackground(Color.YELLOW);
         Window.add(Sign_up);
+
+        //action Listener for sign_up
+        Sign_up.addActionListener(e -> {
+            System.out.println("Sign_up");
+        });
 
     }
 
