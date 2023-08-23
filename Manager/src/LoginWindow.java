@@ -12,8 +12,8 @@ public class LoginWindow extends JFrame
 
     public LoginWindow(){
 
-        // setup the window
-        JFrame Window = new JFrame("Login or Sign up");
+        // set up the window
+        JFrame Window = new JFrame("login or sign up");
         Window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Window.pack();
         Window.setLayout(null);
@@ -24,9 +24,9 @@ public class LoginWindow extends JFrame
         Window.setLocationRelativeTo(null);
 
         //login button
-        JButton Login = new JButton("Login");
+        JButton Login = new JButton("login");
         Login.setBounds(Width/4, Height/4, 150, 75);
-        Login.setBackground(Color.CYAN);
+        Login.setBackground(Color.pink);
         Window.add(Login);
 
         //action Listener for login
@@ -36,9 +36,9 @@ public class LoginWindow extends JFrame
         });
 
         //Sign up button
-        JButton Create_Account = new JButton("Create Account");
+        JButton Create_Account = new JButton("create account");
         Create_Account.setBounds(Width/2,Height/4, 150,75);
-        Create_Account.setBackground(Color.LIGHT_GRAY);
+        Create_Account.setBackground(Color.white);
         Window.add(Create_Account);
 
         //action Listener for sign_up
