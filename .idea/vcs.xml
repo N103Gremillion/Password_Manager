@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="VcsDirectoryMappings">
+<<<<<<< HEAD
     <mapping directory="$PROJECT_DIR$/Password_Manager" vcs="Git" />
+=======
+    <mapping directory="" vcs="Git" />
+>>>>>>> 4ec1c834c0dce4bfff461b0ba374f7c69c29814e
   </component>
 </project>
