@@ -56,7 +56,8 @@ public class Create_Account_Window extends JFrame
         });
 
         // password text field
-        JTextField Password = new JTextField("password");
+        JPasswordField Password = new JPasswordField("password");
+        Password.setEchoChar((char)0);
         Password.setBounds(Width/3 -75, Height/2 -50, 250, 50);
         Password.setBackground(Color.gray);
         Password.setHorizontalAlignment(Password.CENTER);
@@ -65,14 +66,18 @@ public class Create_Account_Window extends JFrame
         Password.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e){
-                if (Password.getText().equals("password")) {
+                if (Password.getPassword().equals("password")) {
                     Password.setText("");
                 }
             }
             @Override
             public void focusLost(FocusEvent e) {
-                if (Password.getText().isEmpty()){
+                if (Password.getPassword().equals("")){
                     Password.setText("password");
+                    Password.setEchoChar((char)0);
+                }
+                else{
+
                 }
             }
         });

@@ -45,6 +45,7 @@ public class Create_Login_Window extends JFrame
 
         // password text field
         JPasswordField password = new JPasswordField("password");
+        password.setEchoChar((char)0);
         password.setBounds(Width/3 -75, Height/2 -5, 250, 50);
         password.setBackground(Color.pink);
         password.setHorizontalAlignment(password.CENTER);
@@ -56,11 +57,13 @@ public class Create_Login_Window extends JFrame
                 if (password.getText().equals("password")) {
                     password.setText("");
                 }
+                password.setEchoChar('*');
             }
             @Override
             public void focusLost(FocusEvent e) {
                 if (password.getText().isEmpty()){
                     password.setText("password");
+                    password.setEchoChar((char)0);
                 }
             }
         });
