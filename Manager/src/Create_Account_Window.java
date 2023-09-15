@@ -23,23 +23,27 @@ public class Create_Account_Window extends JFrame
         Create_Window.setLocationRelativeTo(null);
 
         // email text field
-        JTextField email_login = new JTextField("email");
+        JTextField email_login = new JTextField("username");
         email_login.setBounds(Width/3 -75, Height/4 -20, 250, 50);
         email_login.setBackground(Color.gray);
         email_login.setHorizontalAlignment(email_login.CENTER);
         Create_Window.add(email_login);
+
+        //Password_Storage checking for the instance of the window
+        Password_Storage Check = new Password_Storage();
+
         // delete text when selected
         email_login.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e){
-                if (email_login.getText().equals("email")) {
+                if (email_login.getText().equals("username")) {
                     email_login.setText("");
                 }
             }
             @Override
             public void focusLost(FocusEvent e) {
                 if (email_login.getText().isEmpty()){
-                    email_login.setText("email");
+                    email_login.setText("username");
                 }
             }
         });
@@ -65,25 +69,27 @@ public class Create_Account_Window extends JFrame
         // delete text when selected
         Password.addFocusListener(new FocusListener() {
             @Override
-            public void focusGained(FocusEvent e){
-                if (Password.getPassword().equals("password")) {
+            public void focusGained(FocusEvent e) {
+                String passText = new String(Password.getPassword());
+                if (passText.equals("password")) {
                     Password.setText("");
                 }
+                Password.setEchoChar('*');
             }
+
             @Override
             public void focusLost(FocusEvent e) {
-                if (Password.getPassword().equals("")){
+                String passText = new String(Password.getPassword());
+                if (passText.isEmpty()) {
                     Password.setText("password");
                     Password.setEchoChar((char)0);
                 }
-                else{
-
-                }
-            }
+        }
         });
 
         // confirm password test field
-        JTextField Confirm_Password = new JTextField("confirm password");
+        JPasswordField Confirm_Password = new JPasswordField("confirm password");
+        Confirm_Password.setEchoChar((char)0);
         Confirm_Password.setBounds(Width/3 -75 , Height - 200,  250, 50);
         Confirm_Password.setBackground(Color.gray);
         Confirm_Password.setHorizontalAlignment(Password.CENTER);
@@ -92,14 +98,18 @@ public class Create_Account_Window extends JFrame
         Confirm_Password.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e){
-                if (Confirm_Password.getText().equals("confirm password")) {
+                String passfield = new String(Confirm_Password.getPassword());
+                if (passfield.equals("confirm password")) {
                     Confirm_Password.setText("");
                 }
+                Confirm_Password.setEchoChar('*');
             }
             @Override
             public void focusLost(FocusEvent e) {
-                if (Confirm_Password.getText().isEmpty()){
+                String passfield = new String(Confirm_Password.getPassword());
+                if (passfield.isEmpty()){
                     Confirm_Password.setText("confirm password");
+                    Confirm_Password.setEchoChar((char)0);
                 }
             }
         });
@@ -109,5 +119,10 @@ public class Create_Account_Window extends JFrame
         Submit.setBounds(Width/3 , Height - 125, 100, 50);
         Submit.setBackground(Color.white);
         Create_Window.add(Submit);
+        Submit.addActionListener(e ->{
+            if (Check.checkValidCreation(email_login, Password, Confirm_Password)){
+                System.out.println("yo");
+            }
+        });
     }
 }

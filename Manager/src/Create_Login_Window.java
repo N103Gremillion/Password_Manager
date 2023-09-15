@@ -54,14 +54,16 @@ public class Create_Login_Window extends JFrame
         password.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e){
-                if (password.getText().equals("password")) {
+                String passText = new String(password.getPassword());
+                if (passText.equals("password")) {
                     password.setText("");
                 }
                 password.setEchoChar('*');
             }
             @Override
             public void focusLost(FocusEvent e) {
-                if (password.getText().isEmpty()){
+                String passText = new String(password.getPassword());
+                if (passText.isEmpty()){
                     password.setText("password");
                     password.setEchoChar((char)0);
                 }
@@ -73,6 +75,10 @@ public class Create_Login_Window extends JFrame
         Submit.setBounds(Width/3 , Height - 125, 100, 50);
         Submit.setBackground(Color.red);
         Log_Window.add(Submit);
+        // action listener for submit
+        Submit.addActionListener(e -> {
+
+        });
 
         // back button
         JButton Back = new JButton("go back");
