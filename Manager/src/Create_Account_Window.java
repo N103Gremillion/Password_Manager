@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.List;
 
 public class Create_Account_Window extends JFrame
 {
@@ -22,8 +23,17 @@ public class Create_Account_Window extends JFrame
         Create_Window.setResizable(false);
         Create_Window.setLocationRelativeTo(null);
 
+        // panel above email
+        JLabel usernameLabel = new JLabel();
+        usernameLabel.setForeground(Color.RED);
+        usernameLabel.setBounds(Width/3-100, Height/4-60, 400, 50);
+        usernameLabel.setBackground(Color.gray);
+        Create_Window.add(usernameLabel);
+
         // email text field
-        JTextField email_login = new JTextField("username");
+        JTextField email_login = new JTextField();
+        email_login.setDocument(new CharacterLImit(30));
+        email_login.setText("username");
         email_login.setBounds(Width/3 -75, Height/4 -20, 250, 50);
         email_login.setBackground(Color.gray);
         email_login.setHorizontalAlignment(email_login.CENTER);
@@ -59,11 +69,20 @@ public class Create_Account_Window extends JFrame
             new LoginWindow();
         });
 
+        // panel above email
+        JLabel passwordLabel = new JLabel();
+        passwordLabel.setForeground(Color.RED);
+        passwordLabel.setBounds(Width/3-100, Height/4-60, 400, 50);
+        passwordLabel.setBackground(Color.gray);
+        Create_Window.add(usernameLabel);
+
         // password text field
-        JPasswordField Password = new JPasswordField("password");
+        JPasswordField Password = new JPasswordField();
         Password.setEchoChar((char)0);
         Password.setBounds(Width/3 -75, Height/2 -50, 250, 50);
         Password.setBackground(Color.gray);
+        Password.setDocument(new CharacterLImit(20));
+        Password.setText("password");
         Password.setHorizontalAlignment(Password.CENTER);
         Create_Window.add(Password);
         // delete text when selected
@@ -88,8 +107,10 @@ public class Create_Account_Window extends JFrame
         });
 
         // confirm password test field
-        JPasswordField Confirm_Password = new JPasswordField("confirm password");
+        JPasswordField Confirm_Password = new JPasswordField();
         Confirm_Password.setEchoChar((char)0);
+        Confirm_Password.setDocument(new CharacterLImit(20));
+        Confirm_Password.setText("confirm password");
         Confirm_Password.setBounds(Width/3 -75 , Height - 200,  250, 50);
         Confirm_Password.setBackground(Color.gray);
         Confirm_Password.setHorizontalAlignment(Password.CENTER);
@@ -120,8 +141,11 @@ public class Create_Account_Window extends JFrame
         Submit.setBackground(Color.white);
         Create_Window.add(Submit);
         Submit.addActionListener(e ->{
-            if (Check.checkValidCreation(email_login, Password, Confirm_Password)){
-                System.out.println("yo");
+            List<Boolean> validList = Check.checkValidCreation(email_login, Password, Confirm_Password);
+            if (!validList.get(0)){
+                usernameLabel.setText("only letters and numbers / must be at least 6 characters");
+            if (!validList.get(1))
+                passwordLabel.setText("must have");
             }
         });
     }
