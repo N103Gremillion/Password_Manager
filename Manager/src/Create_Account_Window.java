@@ -69,17 +69,17 @@ public class Create_Account_Window extends JFrame
             new LoginWindow();
         });
 
-        // panel above email
+        // panel above password
         JLabel passwordLabel = new JLabel();
         passwordLabel.setForeground(Color.RED);
-        passwordLabel.setBounds(Width/3-100, Height/4-60, 400, 50);
+        passwordLabel.setBounds(Width/3-120, Height/4 , 400, 100);
         passwordLabel.setBackground(Color.gray);
-        Create_Window.add(usernameLabel);
+        Create_Window.add(passwordLabel);
 
         // password text field
         JPasswordField Password = new JPasswordField();
         Password.setEchoChar((char)0);
-        Password.setBounds(Width/3 -75, Height/2 -50, 250, 50);
+        Password.setBounds(Width/3-75, Height/2 -50, 250, 50);
         Password.setBackground(Color.gray);
         Password.setDocument(new CharacterLImit(20));
         Password.setText("password");
@@ -106,12 +106,19 @@ public class Create_Account_Window extends JFrame
         }
         });
 
+        // panel above confirm password
+        JLabel confirmPasswordLabel = new JLabel();
+        confirmPasswordLabel.setForeground(Color.RED);
+        confirmPasswordLabel.setBounds(Width/3-65, Height-250 , 250, 50);
+        confirmPasswordLabel.setBackground(Color.gray);
+        Create_Window.add(confirmPasswordLabel);
+
         // confirm password test field
         JPasswordField Confirm_Password = new JPasswordField();
         Confirm_Password.setEchoChar((char)0);
         Confirm_Password.setDocument(new CharacterLImit(20));
         Confirm_Password.setText("confirm password");
-        Confirm_Password.setBounds(Width/3 -75 , Height - 200,  250, 50);
+        Confirm_Password.setBounds(Width/3 -75 , Height-200,  250, 50);
         Confirm_Password.setBackground(Color.gray);
         Confirm_Password.setHorizontalAlignment(Password.CENTER);
         Create_Window.add(Confirm_Password);
@@ -145,7 +152,13 @@ public class Create_Account_Window extends JFrame
             if (!validList.get(0)){
                 usernameLabel.setText("only letters and numbers / must be at least 6 characters");
             if (!validList.get(1))
-                passwordLabel.setText("must have");
+                passwordLabel.setText("<html>password/ must contain digit, special character lowercase and <br/>uppercase letter " +
+                        "also length must be at least 8 characters long</html>");
+            if (!validList.get(2))
+                confirmPasswordLabel.setText("This does not match the password field");
+            if (validList.get(0) && validList.get(1) && validList.get(2)){
+                System.out.println("this is valid");
+            }
             }
         });
     }
